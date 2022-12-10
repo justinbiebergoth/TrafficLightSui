@@ -31,18 +31,15 @@ struct ContentView: View {
         switch currentLightState {
         case .red:
             redOpacity = LightState.On
-            yellowOpacity = LightState.Off
             greenOpacity = LightState.Off
             currentLightState = .yellow
             buttonTitle = "Next"
         case .yellow:
             redOpacity = LightState.Off
             yellowOpacity = LightState.On
-            greenOpacity = LightState.Off
             currentLightState = .green
         case .green:
             greenOpacity = LightState.On
-            redOpacity = LightState.Off
             yellowOpacity = LightState.Off
             currentLightState = .red
         }
