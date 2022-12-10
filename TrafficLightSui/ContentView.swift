@@ -11,10 +11,10 @@ enum CurrentLightState {
     case red, yellow, green
 }
 
-//enum LightState {
-//    case lightIsOn = 1.0
-//    case lightIsOff = 0.3
-//}
+enum LightState: Double {
+    case On = 1.0
+    case Off = 0.3
+}
 
 
 struct ContentView: View {
@@ -22,31 +22,28 @@ struct ContentView: View {
     @State var buttonTitle: String = "Start"
     
     @State var currentLightState = CurrentLightState.red
-    @State var redOpacity = 0.3
-    @State var yellowOpacity = 0.3
-    @State var greenOpacity = 0.3
+    @State var redOpacity = LightState.Off
+    @State var yellowOpacity = LightState.Off
+    @State var greenOpacity = LightState.Off
     
     private func switchColor() {
-//        if buttonTitle == "Start" {
-//            buttonTitle = "Next"
-//        }
-        
-        let lightIsOn = 1.0
-        let lightIsOff = 0.3
         
         switch currentLightState {
         case .red:
-            redOpacity = 1.0
-            yellowOpacity = lightIsOff
+            redOpacity = LightState.On
+            yellowOpacity = LightState.Off
+            greenOpacity = LightState.Off
             currentLightState = .yellow
             buttonTitle = "Next"
         case .yellow:
-            yellowOpacity = lightIsOff
-            greenOpacity = lightIsOn
+            redOpacity = LightState.Off
+            yellowOpacity = LightState.On
+            greenOpacity = LightState.Off
             currentLightState = .green
         case .green:
-            greenOpacity = lightIsOff
-            redOpacity = lightIsOn
+            greenOpacity = LightState.On
+            redOpacity = LightState.Off
+            yellowOpacity = LightState.Off
             currentLightState = .red
         }
         
@@ -57,9 +54,9 @@ struct ContentView: View {
             BackgroundView()
             
             VStack {
-                ColorCircleView(color: .red, opacity: redOpacity)
-                ColorCircleView(color: .yellow, opacity: yellowOpacity)
-                ColorCircleView(color: .green, opacity: greenOpacity)
+                ColorCircleView(color: .red, opacity: redOpacity.rawValue)
+                ColorCircleView(color: .yellow, opacity: yellowOpacity.rawValue)
+                ColorCircleView(color: .green, opacity: greenOpacity.rawValue)
                 
                 Spacer()
                 
