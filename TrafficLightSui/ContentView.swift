@@ -11,25 +11,33 @@ enum CurrentLightState {
     case red, yellow, green
 }
 
-let lightIsOn = 1.0
-let lightIsOff = 0.3
+//enum LightState {
+//    case lightIsOn = 1.0
+//    case lightIsOff = 0.3
+//}
+
 
 struct ContentView: View {
     
     @State var buttonTitle: String = "Start"
     
     @State var currentLightState = CurrentLightState.red
-    @State var redOpacity = lightIsOff
-    @State var yellowOpacity = lightIsOff
-    @State var greenOpacity = lightIsOff
+    @State var redOpacity = 0.3
+    @State var yellowOpacity = 0.3
+    @State var greenOpacity = 0.3
     
-    private func switchColour() {
+    private func switchColor() {
+//        if buttonTitle == "Start" {
+//            buttonTitle = "Next"
+//        }
         
+        let lightIsOn = 1.0
+        let lightIsOff = 0.3
         
         switch currentLightState {
         case .red:
-            redOpacity = lightIsOff
-            yellowOpacity = lightIsOn
+            redOpacity = 1.0
+            yellowOpacity = lightIsOff
             currentLightState = .yellow
             buttonTitle = "Next"
         case .yellow:
@@ -55,7 +63,7 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                ButtonView(title: buttonTitle, action: switchColour)
+                ButtonView(title: buttonTitle, action: switchColor)
             }
             .padding()
         }
